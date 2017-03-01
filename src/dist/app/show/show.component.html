@@ -1,0 +1,48 @@
+<div class="container" *ngIf="showFlag">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let task of tasksArr; let i = index">
+            <td>{{task.date}}</td>
+            <td>{{task.title}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.priority}}</td>
+            <td><span (click)="deleteTask(i)" class="delete-icon">
+                <button class="btn btn-default">Delete</button>
+            </span> </td>
+            <td><span (click)="editTask(i)" class="delete-icon">
+                <button class="btn btn-default">Edit</button>
+            </span> </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="container" *ngIf="editFlag">
+    <form>
+        <div class="form-group">
+            <label for="date">Date:</label> <input type="text" class="form-control" id="date" #date placeholder="Enter Date" value="{{task.date}}">
+
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" #title placeholder="Enter Title" value="{{task.title}}">
+
+            <label for="description">Description:</label>
+            <Input type="text" class="form-control" id="description" #description placeholder="Enter Description" value="{{task.description}}">
+
+            <label for="priority">Priority:</label>
+            <input type="text" class="form-control" id="priority" #priority placeholder="Enter Priority" value="{{task.priority}}">
+        </div>
+        <button (click)="updateData(date.value,title.value,descrip.value,priority.value)" type="submit" class="btn btn-default">Submit</button>
+        <button (click)="backtoHome()" class="btn btn-default">Back to Home</button>
+    </form>
+</div>
